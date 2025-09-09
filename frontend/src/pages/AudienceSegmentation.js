@@ -13,7 +13,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  // Paper,
   CircularProgress,
   Chip
 } from '@mui/material';
@@ -25,7 +25,7 @@ import {
   Tooltip,
   Legend
 } from 'recharts';
-import { getAllSegments } from '../services/segmentationService';
+// import { getAllSegments } from '../services/segmentationService';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
@@ -52,8 +52,8 @@ const AudienceSegmentation = () => {
                 ltv: { min: 1000 },
                 purchases: { min: 3 }
               },
-              created: '2023-06-15T10:30:00Z',
-              updated: '2023-06-15T10:30:00Z'
+              created: '2025-06-15T10:30:00Z',
+              updated: '2025-06-15T10:30:00Z'
             },
             {
               id: 'segment2',
@@ -63,8 +63,8 @@ const AudienceSegmentation = () => {
               criteria: {
                 abandoned_cart: { days: 30 }
               },
-              created: '2023-06-10T14:20:00Z',
-              updated: '2023-06-14T11:15:00Z'
+              created: '2025-06-10T14:20:00Z',
+              updated: '2025-06-14T11:15:00Z'
             },
             {
               id: 'segment3',
@@ -74,8 +74,8 @@ const AudienceSegmentation = () => {
               criteria: {
                 email_subscription: true
               },
-              created: '2023-05-05T09:10:00Z',
-              updated: '2023-05-05T09:10:00Z'
+              created: '2025-05-05T09:10:00Z',
+              updated: '2025-05-05T09:10:00Z'
             },
             {
               id: 'segment4',
@@ -85,8 +85,8 @@ const AudienceSegmentation = () => {
               criteria: {
                 first_purchase: { days: 90 }
               },
-              created: '2023-06-01T16:45:00Z',
-              updated: '2023-06-01T16:45:00Z'
+              created: '2025-06-01T16:45:00Z',
+              updated: '2025-06-01T16:45:00Z'
             },
             {
               id: 'segment5',
@@ -96,8 +96,8 @@ const AudienceSegmentation = () => {
               criteria: {
                 last_purchase: { min_days: 180 }
               },
-              created: '2023-05-20T13:30:00Z',
-              updated: '2023-05-20T13:30:00Z'
+              created: '2025-05-20T13:30:00Z',
+              updated: '2025-05-20T13:30:00Z'
             }
           ]);
           setLoading(false);
@@ -155,18 +155,19 @@ const AudienceSegmentation = () => {
           <Card>
             <CardHeader title="Segment Distribution" />
             <CardContent>
-              <Box sx={{ height: 300 }}>
+              <Box sx={{ height: 380 }}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
+                  <PieChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                     <Pie
                       data={prepareSegmentData()}
                       cx="50%"
                       cy="50%"
-                      labelLine={false}
-                      outerRadius={100}
+                      labelLine={true}
+                      outerRadius={90}
                       fill="#8884d8"
                       dataKey="value"
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      paddingAngle={2}
                     >
                       {prepareSegmentData().map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -175,7 +176,7 @@ const AudienceSegmentation = () => {
                     <Tooltip 
                       formatter={(value) => `${value.toLocaleString()} users`}
                     />
-                    <Legend />
+                    <Legend layout="vertical" verticalAlign="middle" align="right" />
                   </PieChart>
                 </ResponsiveContainer>
               </Box>

@@ -1,0 +1,38 @@
+/**
+ * Vercel serverless function for API health check
+ */
+
+export default function handler(req, res) {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      status: 'OK',
+      message: 'MarTech Journey Analytics API',
+      version: '1.0.0',
+      timestamp: new Date().toISOString(),
+      endpoints: {
+        attribution: '/api/attribution',
+        journey: '/api/journey',
+        segmentation: '/api/segmentation',
+        roi: '/api/roi'
+      }
+    });
+  } else {
+    res.setHeader('Allow', ['GET']);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+}
+

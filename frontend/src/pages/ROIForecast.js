@@ -10,18 +10,18 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  TextField,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  // TextField,
+  // Button,
+  // Table,
+  // TableBody,
+  // TableCell,
+  // TableContainer,
+  // TableHead,
+  // TableRow,
   Paper,
   CircularProgress,
   Slider,
-  Stack
+  // Stack
 } from '@mui/material';
 import { 
   LineChart, 
@@ -35,7 +35,7 @@ import {
   BarChart,
   Bar
 } from 'recharts';
-import { getROIForecasts } from '../services/roiService';
+// import { getROIForecasts } from '../services/roiService';
 
 // Mock data for the ROI forecast
 const mockForecastData = [

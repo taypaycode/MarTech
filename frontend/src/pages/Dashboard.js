@@ -25,9 +25,9 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts';
-import { getAttributionReport } from '../services/attributionService';
-import { getROIForecasts } from '../services/roiService';
-import { getAllSegments } from '../services/segmentationService';
+// import { getAttributionReport } from '../services/attributionService';
+// import { getROIForecasts } from '../services/roiService';
+// import { getAllSegments } from '../services/segmentationService';
 
 // Mock data (in a real app, this would come from the API)
 const channelPerformance = [
@@ -52,7 +52,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [attributionData, setAttributionData] = useState(null);
-  const [roiData, setRoiData] = useState(null);
+  const [, setRoiData] = useState(null);
   const [segmentData, setSegmentData] = useState(null);
   const [error, setError] = useState(null);
 
