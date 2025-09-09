@@ -162,11 +162,33 @@ const AudienceSegmentation = () => {
                       data={prepareSegmentData()}
                       cx="50%"
                       cy="50%"
-                      labelLine={true}
+                      labelLine={false}
                       outerRadius={90}
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                        const RADIAN = Math.PI / 180;
+                        const radius = innerRadius + (outerRadius - innerRadius) * 0.6; // Move text closer to center
+                        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                        
+                        // Only show percentages > 5% to avoid clutter
+                        if (percent < 0.05) return null;
+                        
+                        return (
+                          <text
+                            x={x}
+                            y={y}
+                            fill="white"
+                            textAnchor="middle"
+                            dominantBaseline="central"
+                            fontSize="13"
+                            fontWeight="bold"
+                          >
+                            {`${(percent * 100).toFixed(0)}%`}
+                          </text>
+                        );
+                      }}
                       paddingAngle={2}
                     >
                       {prepareSegmentData().map((entry, index) => (
